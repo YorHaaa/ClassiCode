@@ -1,0 +1,160 @@
+{
+  "name": "comment-classifier",
+  "displayName": "Comment Classifier",
+  "description": "Classify and highlight comments in code files",
+  "version": "0.0.1",
+  "publisher": "yixuan",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "codeCommentExplorer",
+          "name": "Comments List"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "commentClassifier.highlight",
+        "title": "Highlight Classified Comments",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "commentClassifier.clearHighlight",
+        "title": "Clear highlight",
+        "icon": "$(eye-closed)"
+      },
+      {
+        "command": "commentClassifier.classifyAllFiles",
+        "title": "Execute Comments Classify of All Files"
+      },
+      {
+        "command": "commentClassifier.classifyCurrentFile",
+        "title": "Execute Comments Classify of Current file"
+      },
+      {
+        "command": "commentClassifier.updateClassifyOfAllFiles",
+        "title": "Update Comments Classify of All files"
+      },
+      {
+        "command": "commentClassifier.refreshList",
+        "title": "Refresh Code Comments",
+        "icon": "$(refresh)"
+      },    
+      {
+        "command": "commentClassifier.showFilterOptions",
+        "title": "Show Filter Options",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "commentClassifier.showSortOptions",
+        "title": "Show Sort Options",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "codeCommentExplorer.showChart",
+        "title": "Show Visualization"
+      },
+      {
+        "command": "codeCommentExplorer.refresh",
+        "title": "Refresh Visualization"
+      },
+      {
+        "command": "commentClassifier.setTypeManually",
+        "title": "Set Type Manually",
+        "icon": "$(edit)",
+        "category": "Comment Classifier"
+      },
+      {
+        "command": "commentClassifier.changeTypeAtCursor",
+        "title": "Change Comment Type at Cursor",
+        "category": "Comment Classifier"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "commentClassifier.changeTypeAtCursor",
+          "when": "editorHasCodeLensProvider && editorTextFocus && !editorReadonly",
+          "group": "commentClassifier",
+          "icon": "$(edit)",
+          "title": "Change Comment Type"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "codeCommentExplorer.showChart",
+          "title": "Show Comment Visualization"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "commentClassifier.refreshList",
+          "group": "navigation",
+          "when": "view == codeCommentExplorer"
+        },
+        {
+          "command": "commentClassifier.showFilterOptions",
+          "group": "navigation",
+          "when": "view == codeCommentExplorer"
+        },
+        {
+          "command": "commentClassifier.showSortOptions",
+          "group": "navigation",
+          "when": "view == codeCommentExplorer"
+        },
+        {
+          "command": "commentClassifier.highlight",
+          "group": "navigation",
+          "when": "view == codeCommentExplorer && !commentClassifierHighlightActive"
+        },
+        {
+          "command": "commentClassifier.clearHighlight",
+          "group": "navigation",
+          "when": "view == codeCommentExplorer && commentClassifierHighlightActive"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "commentClassifier.setTypeManually",
+          "when": "view == codeCommentExplorer && viewItem == commentItem",
+          "group": "inline",
+          "icon": "$(edit)",
+          "showInCommandPalette": false
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "onView:codeCommentExplorer",
+    "onCommand:codeCommentExplorer.showChart"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  },
+    "dependencies": {
+      "tree-sitter": "0.21.1",
+      "tree-sitter-java": "0.23.5",
+      "tree-sitter-python": "0.21.0"
+    }
+}
