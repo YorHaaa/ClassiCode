@@ -1,0 +1,13 @@
+{
+  "name": "ClassiCode User Study",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20", 
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next"  
+      ]
+    }
+  },
+  "features": {},
+  "postCreateCommand": "npm install --prefix ClassiCode"
+}
