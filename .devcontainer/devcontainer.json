@@ -9,5 +9,5 @@
     }
   },
   "features": {},
-  "postCreateCommand": "npm install --prefix ClassiCode"
+  "postCreateCommand": "npm install"
 }
