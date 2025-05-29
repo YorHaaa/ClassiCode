@@ -62,40 +62,51 @@ export class FileTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
 
   async getChildren(element?: vscode.TreeItem): Promise<vscode.TreeItem[]> {
     if (!element) {
-      const classifyAllButton = new vscode.TreeItem('Execute Comments Classify of All Files', vscode.TreeItemCollapsibleState.None);
-      classifyAllButton.command = {
-        command: 'commentClassifier.classifyAllFiles',
-        title: 'Execute Comments Classify of All Files',
-        arguments: [false]
-      };
-
-      const classifyCurrentButton = new vscode.TreeItem('Execute Comments Classify of Current file', vscode.TreeItemCollapsibleState.None);
-      classifyCurrentButton.command = {
-        command: 'commentClassifier.classifyCurrentFile',
-        title: 'Execute Comments Classify of Current file',
-        arguments: [false]
-      };
-
-      const updateAllButton = new vscode.TreeItem('Update Comments Classify of All Files', vscode.TreeItemCollapsibleState.None);
-      updateAllButton.command = {
-        command: 'commentClassifier.updateClassifyOfAllFiles',
-        title: 'Update  Comments Classify of All Files',
-        arguments: [false]
-      };
-
-      const overallVisualizationButton = new vscode.TreeItem('Show Overall Comment Visualization', vscode.TreeItemCollapsibleState.None);
-      overallVisualizationButton.command = {
-        command: 'commentVisualization.showChart',
-        title: 'Overall Visualization',
-        arguments: [false]
-      };
-
-      const currentVisualizationButton = new vscode.TreeItem('Show Current File Comment Visualization', vscode.TreeItemCollapsibleState.None);
-      currentVisualizationButton.command = {
-        command: 'commentVisualization.showChart',
-        title: 'Show File Visualization',
-        arguments: [true]
-      };
+      
+      const updateAllButton = new vscode.TreeItem("Update All Files", vscode.TreeItemCollapsibleState.None);
+            updateAllButton.iconPath = new vscode.ThemeIcon("symbol-keyword");
+            updateAllButton.tooltip = "Classify all files for comments";
+            updateAllButton.command = {
+              command: 'commentClassifier.updateClassifyOfAllFiles',
+              title: 'Update  Comments Classify of All Files',
+              arguments: [false]
+            };
+      
+      const classifyAllButton = new vscode.TreeItem("All Files", vscode.TreeItemCollapsibleState.None);
+            classifyAllButton.iconPath = new vscode.ThemeIcon("symbol-keyword");
+            classifyAllButton.tooltip = "Classify all files for comments";
+            classifyAllButton.command = {
+              command: 'commentClassifier.classifyAllFiles',
+              title: 'Execute Comments Classify of All Files',
+              arguments: [false]
+            };
+      
+      const classifyCurrentButton = new vscode.TreeItem("Current File", vscode.TreeItemCollapsibleState.None);
+            classifyCurrentButton.iconPath = new vscode.ThemeIcon("symbol-keyword");
+            classifyCurrentButton.tooltip = "Classify current file for comments";
+            classifyCurrentButton.command = {
+              command: 'commentClassifier.classifyCurrentFile',
+              title: 'Execute Comments Classify of Current file',
+              arguments: [false]
+            };
+      
+      const overallVisualizationButton = new vscode.TreeItem("All Files", vscode.TreeItemCollapsibleState.None);
+            overallVisualizationButton.iconPath = new vscode.ThemeIcon("graph");
+            overallVisualizationButton.tooltip = "Show overall visualization of all files";
+            overallVisualizationButton.command = {
+              command: 'commentVisualization.showChart',
+              title: 'Overall Visualization',
+              arguments: [false]
+            };
+      
+      const currentVisualizationButton = new vscode.TreeItem("Current File", vscode.TreeItemCollapsibleState.None);
+            currentVisualizationButton.iconPath = new vscode.ThemeIcon("graph");
+            currentVisualizationButton.tooltip = "Show visualization for the current file";
+            currentVisualizationButton.command = {
+              command: 'commentVisualization.showChart',
+              title: 'Show File Visualization',
+              arguments: [true]
+            };
 
       const workspaceNodes = await this.getWorkspaceRootNodes();
       return [classifyAllButton,classifyCurrentButton,updateAllButton,overallVisualizationButton,currentVisualizationButton, ...workspaceNodes];
