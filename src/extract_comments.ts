@@ -359,7 +359,9 @@ function calculateParagraphPosition(
 }
 
 function processJavaOrPython(fileContent: string, language: string): Comment[] {
-    const parser = createParser(language);
+    try {
+        const parser = createParser(language);
+    parser.setTimeoutMicros(5000000);
     const tree = parser.parse(fileContent);
     const query = new Parser.Query(
         parser.getLanguage(),
@@ -381,19 +383,22 @@ function processJavaOrPython(fileContent: string, language: string): Comment[] {
         const path = '';
         
         // 清除注释标记并分段
-        const cleanedText = cleanCommentMarkers(node.text, language);
+        const nodeText = fileContent.slice(node.startIndex, node.endIndex);
+        const cleanedText = cleanCommentMarkers(nodeText, language);
         const paragraphs = splitIntoParagraphs(cleanedText, language);
+
         
         // 为每个段落创建Comment对象
         paragraphs.forEach((paragraph, paragraphIndex) => {
             const position = calculateParagraphPosition(
-                node.text,
+                nodeText,
                 paragraph,
                 originalLineNumber[0],
                 originalStartPos,
                 fileContent,
                 originalLineNumber[1]
             );
+
             
             comments.push(new Comment(
                 0, // id will be set later
@@ -410,74 +415,119 @@ function processJavaOrPython(fileContent: string, language: string): Comment[] {
     });
 
     return comments;
+    } catch (error) {
+        // 安全处理 unknown 类型的错误
+        const errorMessage = error instanceof Error ? error.message : '未知错误';
+        console.error(`Tree-sitter解析错误: ${errorMessage}`);
+        throw error; // 抛出错误以便上层捕获并回退
+    }
 }
 
 // Different Regular Expressions of Different Languages to match comments
 export function extractComments(fileContent: string, language: string): Comment[] {
-    const comments: Comment[] = [];
-    const lines = fileContent.split('\n');
+    // 跳过过大文件
+    const MAX_FILE_SIZE = 1024 * 1024; // 1MB
+    if (fileContent.length > MAX_FILE_SIZE) {
+        console.warn(`跳过过大文件 (${fileContent.length} 字符)`);
+        return fallbackToRegexComments(fileContent, language);
+    }
 
-    let regex: RegExp | null = null;
+    try {
+        if (language === 'java' || language === 'python') {
+            return processJavaOrPython(fileContent, language);
+        } else if (language === 'pharo') {
+            return fallbackToRegexComments(fileContent, language);
+        }
+        return [];
+    } catch (error) {
+        // 安全处理 unknown 类型的错误
+        const errorMessage = error instanceof Error ? error.message : '未知解析错误';
+        console.error(`Tree-sitter解析失败，使用正则回退: ${errorMessage}`);
+        return fallbackToRegexComments(fileContent, language);
+    }
+}
 
-    if (language === 'java' || language === 'python') {
-        return processJavaOrPython(fileContent, language);
-    } else if (language === 'pharo') {
-        regex = /"[^"]*"/g;
+function fallbackToRegexComments(fileContent: string, language: string): Comment[] {
+    try {
+        const comments: Comment[] = [];
+        const lines = fileContent.split('\n');
+        const lineStartOffsets: number[] = [0];
+        let currentOffset = 0;
         
-        if (!regex) { return comments; }
+        // 计算每行起始偏移量
+        for (let i = 0; i < lines.length; i++) {
+            currentOffset += lines[i].length + 1; // +1 for newline
+            lineStartOffsets.push(currentOffset);
+        }
+
+        let regex: RegExp | null = null;
+
+        if (language === 'java') {
+            // Java: 匹配单行注释和多行注释
+            regex = /(\/\*[\s\S]*?\*\/|\/\/.*)/g;
+        } else if (language === 'python') {
+            // Python: 匹配单行注释和多行字符串(作为文档字符串)
+            regex = /(#.*|'''[\s\S]*?'''|"""[\s\S]*?""")/g;
+        } else if (language === 'pharo') {
+            // Pharo: 匹配双引号注释
+            regex = /"[^"]*"/g;
+        }
+
+        if (!regex) return comments;
 
         let match: RegExpExecArray | null;
-
-        //Get comment start index/line and end index/line
-        const lineStartOffsets: number[] = [];
-        let currentOffset = 0;
-        fileContent.split('\n').forEach(line => {
-            lineStartOffsets.push(currentOffset);
-            currentOffset += line.length + 1;
-        });
-
         while ((match = regex.exec(fileContent)) !== null) {
+            const fullMatch = match[0];
             const startIndex = match.index;
-            const endIndex = regex.lastIndex;
+            const endIndex = regex.lastIndex - 1; // inclusive end
 
-            const startLine = fileContent.slice(0, startIndex).split('\n').length - 1;
-            const endLine = fileContent.slice(0, endIndex).split('\n').length - 1;
-
+            // 计算行号
+            const startLine = fileContent.substring(0, startIndex).split('\n').length - 1;
+            const endLine = fileContent.substring(0, endIndex).split('\n').length - 1;
+            
+            // 计算行内偏移
             const startLineOffset = startIndex - lineStartOffsets[startLine];
             const endLineOffset = endIndex - lineStartOffsets[endLine];
-
-            // 清除注释标记并分段
-            const cleanedText = cleanCommentMarkers(match[0], language);
+            
+            // 清除注释标记
+            const cleanedText = cleanCommentMarkers(fullMatch, language);
             const paragraphs = splitIntoParagraphs(cleanedText, language);
             
             // 为每个段落创建Comment对象
-            paragraphs.forEach((paragraph, paragraphIndex) => {
-                const position = calculateParagraphPosition(
-                    match![0],
-                    paragraph,
-                    startLine,
-                    startLineOffset,
-                    fileContent,
-                    endLine
-                );
-                
+            paragraphs.forEach(paragraph => {
                 comments.push(new Comment(
                     0,
                     language,
                     paragraph,
-                    "", "", "", [""],
-                    position.lineNumber,
-                    position.indexes,
-                    ""));
+                    "", // className - 正则方法无法获取
+                    "", // path - 会在后续设置
+                    CommentLevel.Inline, // level - 正则方法无法精确判断
+                    [""], // type
+                    [startLine, endLine],
+                    [startLineOffset, endLineOffset]
+                ));
             });
         }
-    }
 
-    return comments;
+        return comments;
+    } catch (error) {
+        // 安全处理 unknown 类型的错误
+        const errorMessage = error instanceof Error ? error.message : '正则解析错误';
+        console.error(`正则回退方法失败: ${errorMessage}`);
+        return []; // 返回空数组避免崩溃
+    }
 }
 
 function readFileContent(filePath: string): string {
-    return fs.readFileSync(filePath, 'utf-8');
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    if (content.charCodeAt(0) === 0xFEFF) {
+        content = content.slice(1);
+    }
+    
+    content = content.replace(/\r\n?/g, '\n');
+    
+    return content;
 }
 
 // Get the root path of currernt project

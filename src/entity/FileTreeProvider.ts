@@ -224,34 +224,38 @@ export class FileTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
               true,
               vscode.TreeItemCollapsibleState.Collapsed
             );
-
             mergedNode.iconPath = vscode.ThemeIcon.Folder;
             mergedNode.description = `${mergedPath.displayPath}/`;
             nodes.push(mergedNode);
-            continue;
+            continue; // Skip the rest if merged
           }
-        }
 
-        // If no merging is needed, add the node as usual
-        const node = new FileNode(
-          fullPath,
-          hasComments,
-          isDirectory,
-          isDirectory
-            ? vscode.TreeItemCollapsibleState.Collapsed
-            : vscode.TreeItemCollapsibleState.Collapsed
-        );
-
-        if (isDirectory) {
+          const node = new FileNode(
+            fullPath,
+            hasComments,
+            true,
+            vscode.TreeItemCollapsibleState.Collapsed
+          );
           node.iconPath = vscode.ThemeIcon.Folder;
           node.description = `${path.basename(fullPath)}/`;
-        } else {
+          nodes.push(node);
+          continue; // Add this to make sure it doesn't fall through
+        }
+
+
+        if (!isDirectory) {
+          const node = new FileNode(
+            fullPath,
+            hasComments,
+            false,
+            vscode.TreeItemCollapsibleState.Collapsed
+          );
           node.iconPath = hasComments
             ? new vscode.ThemeIcon('file-code', new vscode.ThemeColor('activityBar.foreground'))
             : vscode.ThemeIcon.File;
+          nodes.push(node);
         }
 
-        nodes.push(node);
       }
 
       return nodes.sort((a, b) => {
