@@ -10,7 +10,9 @@ This VSCode extension helps developers **understand and organize code comments**
 
 1. Click the following  button to create an online environment using github codespace
 
-   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=YorHaaa/ClassiCode)
+   <a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=YorHaaa/ClassiCode" target="_blank">
+     <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces">
+   </a>
 
 2. Choose a **4 cores 16GB machine** and create codespace
 
