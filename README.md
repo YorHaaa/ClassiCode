@@ -14,47 +14,102 @@ This VSCode extension helps developers **understand and organize code comments**
      <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces">
    </a>
 
-2. Choose a **4 cores 16GB machine** and create codespace
+2. Choose a **4 cores 16GB machine** and create a codespace cloud server for you own.
 
-   ![Image](https://github.com/user-attachments/assets/6b3f3162-e8da-432c-ae65-ebfc0c2d4d99)
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602174459222.png)
 
-3. Wait for all libraries in the environment to be created successfully and **press F5** on your keyboard to start extensions debugging mode.
+3. Wait for all libraries in the environment to be loaded successfully and **press F5** on your keyboard to start extensions debugging mode. (Ignore all notifications that appear in vscode)
 
-   ![Image](https://github.com/user-attachments/assets/20939d09-d72d-4922-bb3f-2d144539c14c)
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175130606.png)
 
-4. Then, a new tab will pop up in the browser. Select a project to debug our plugin. Click the Explorer button on the side bar, and then clone our user study repository https://github.com/YorHaaa/Userstudy-repo.git
+4. Then you will see a new editor pop up in vscode, which is used to select the project to which this plugin should be applied. 
 
-   ![Image](https://github.com/user-attachments/assets/d7783dd5-502b-4ce5-96fa-c11d462383b5)
+   At this point, the plugin has been successfully run, and you can see the clone repository button in the explorer option in the side bar. 
 
-5. Don't change anything just press the button `Select as Repository Destination`
+   Through this button, we can **clone the project prepared for this experiment locally and apply our plugin**.
 
-   ![Image](https://github.com/user-attachments/assets/f618b6db-cc14-48d7-af43-9e600a70759c)
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175429829.png)
 
-6. After that open the repository and you could see the plugin is running successfully
+5. After clicking the `clone repository` button, you will be asked to log in to your GitHub account
 
-   ![Image](https://github.com/user-attachments/assets/dca2e5bd-6c5d-441d-a5e4-366f33670ea8)
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602180606845.png)
 
-   ![Image](https://github.com/user-attachments/assets/0f082986-6bd3-429a-946b-97018ad3408e)
+6. After logging in, you need to click the `clone repository` again, copy this link into the input box https://github.com/YorHaaa/Userstudy-repo.git
+
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602180907348.png)
+
+   Don't change anything, just click `Select as Repository Destination`
+
+   ![image-20250602181056185](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602181056185.png)
+
+7.  Open the cloned repository
+
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181146827.png)
+
+   Then you will see that the plug-in has been successfully applied to the warehouse required for this experiment. All subsequent operations in this experiment are completed on this editor.
+
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181742347.png)
 
 ------
 
 ## ✨ Features
 
+**In the side bar**, you cloud see following features:
+
 - 📁 **Comment Explorer Panel**: View a tree-structured list of all comments in the project.
-- 🎨 **Comment Classification**: Comments are labeled into **7 meaningful types**, each with a unique color.
+
+- 🎨 **Comment Classification**: Comments are labeled into **different types**, each with a unique color.
+
+  1. Classify all comments in this project
+
+     ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602182235011.png)
+
+  2. If you change some comments in a file, you cloud use second button to update types of new comments.
+
+     ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602182418937.png)
+
+  3. Use the third button to update all new comments in this project (**Unmodified comments will not be reclassified**)
+
+     ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602182706091.png)
+
 - 🖍️ **Manual Editing**: Click a pencil icon or right-click in the code to manually update a comment's type.
-- 👁️ **Inline Highlighting**: Toggle comment type highlights directly in the code editor.
+
+  ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602182801402.png)
+
+- 👁️ **Highlighting**: Toggle comment type highlights.
+
+  ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602183016418.png)
+
 - 🔍 **Filtering**: View only comments of a specific type within a file.
+
+  ![image-20250602183047875](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602183047875.png)
+
 - 📌 **Quick Navigation**: Click a comment in the panel to jump directly to its location in the code.
+
+  ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602183128534.png)
+
 - 📊 **Visualizations**:
   - **Per-file chart**: See comment type distribution in the current file.
-  - **Project-wide chart**: Understand how comment types are spread across your entire codebase.
+
+    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602183221762.png)
+
+  - **Project-wide chart**: Understand how comment types are spread across your entire project.
+
+    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602183202263.png)
+
+
+
+**In the file editor**, you can manually change the comment type by right-clicking on the comment
+
+![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602183522442.png)
+
+![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602183643775.png)
 
 ------
 
 ## 🧩 Comment Types
 
-Each comment is tagged with one or more of the following types:
+Each comment is tagged with one or more of the following types for java:
 
 | Type            | Description                                     |
 | --------------- | ----------------------------------------------- |
@@ -68,7 +123,23 @@ Each comment is tagged with one or more of the following types:
 
 
 
-You may find multiple tags applied to a single paragraph of comments.
+You may find that multiple tags or information types can be applied to a paragraph within a comment
+
+
+
+If you want to learn more about how we perform comments classification, you can refer to this paper.
+
+````latex
+@article{rani2021,
+  title={How to identify class comment types? A multi-language approach for class comment classification},
+  author={Rani, Pooja and Panichella, Sebastiano and Leuenberger, Manuel and Di Sorbo, Andrea and Nierstrasz, Oscar},
+  journal={Journal of systems and software},
+  volume={181},
+  pages={111047},
+  year={2021},
+  publisher={Elsevier}
+}
+````
 
 ------
 
@@ -83,15 +154,6 @@ You may find multiple tags applied to a single paragraph of comments.
    - **Click** to jump to the corresponding code location.
    - **Toggle** visibility and filtering options to customize your view.
    - **Try** the visualization tools to get a better sense of comment distribution.
-
-------
-
-## 📈 Visualization Examples
-
-- **Visualize Current File**: Displays a chart of comment types in the last active file.
-- **Visualize All Files**: Provides a bar or pie chart showing comment distribution across all files.
-
-Hovering over bars or slices reveals the exact count and percentage.
 
 ------
 
