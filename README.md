@@ -40,7 +40,7 @@ This VSCode extension helps developers **understand and organize code comments**
 
    Don't change anything, just click `Select as Repository Destination`
 
-   ![image-20250602181056185](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602181056185.png)
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602181056185.png)
 
 7.  Open the cloned repository
 
