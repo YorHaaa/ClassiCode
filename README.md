@@ -87,7 +87,7 @@ This VSCode extension helps developers **understand and organize code comments**
 
 - 🔍 **Filtering**: View only comments of a specific type within a file.
 
-  ![image-20250602213532415](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602213532415.png)
+  ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602213532415.png)
 
 - 📌 **Quick Navigation**: Click a comment in the panel to jump directly to its location in the code.
 
