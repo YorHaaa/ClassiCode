@@ -18,9 +18,12 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602174459222.png)
 
-3. Wait for all libraries in the environment to be loaded successfully and **press F5** on your keyboard to start extensions debugging mode. (Ignore all notifications that appear in vscode)
+3. Wait for all libraries in the environment to be loaded successfully and **press F5** on your keyboard to start extensions debugging mode. (**Ignore all notifications that appear in vscode, no need to install any other extensions appear in the vscode**)
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175130606.png)
+
+   > If you see an alert like this, click `continue`
+   > ![image-20250602211739345](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602211739345.png)
 
 4. Then you will see a new editor pop up in vscode, which is used to select the project to which this plugin should be applied. 
 
@@ -30,7 +33,7 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175429829.png)
 
-5. After clicking the `clone repository` button, you will be asked to log in to your GitHub account
+5. After clicking the `clone repository` button, you might be asked to log in to your GitHub account
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602180606845.png)
 
@@ -42,11 +45,11 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602181056185.png)
 
-7.  Open the cloned repository
+7. Open the cloned repository
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181146827.png)
 
-   Then you will see that the plug-in has been successfully applied to the warehouse required for this experiment. All subsequent operations in this experiment are completed on this editor.
+   Then you will see that the plug-in has been successfully applied to the project required for this experiment. All subsequent operations in this experiment are completed on this editor.
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181742347.png)
 
