@@ -25,7 +25,7 @@ This VSCode extension helps developers **understand and organize code comments**
    > If you see an alert like this, click `continue`
    > ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602211739345.png)
 
-4. Then you will see a new editor pop up in vscode, which is used to select the project to which this plugin should be applied. 
+4. Then you will see a new editor pop up in vscode, which is used to select the project to which this plugin should be applied. **All subsequent operations in this experiment are completed on this editor.** 
 
    At this point, the plugin has been successfully run, and you can see the clone repository button in the explorer option in the side bar. 
 
@@ -51,7 +51,7 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181146827.png)
 
-   Then you will see that the plug-in has been successfully applied to the project required for this experiment. All subsequent operations in this experiment are completed on this editor.
+   Then you will see that the plug-in has been successfully applied to the project required for this experiment. 
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181742347.png)
 
