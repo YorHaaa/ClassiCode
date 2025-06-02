@@ -8,11 +8,13 @@ This VSCode extension helps developers **understand and organize code comments**
 
 ## ✔️How to Start
 
-1. Click the following  button to create an online environment using github codespace
+1. Click the following  button to create an online environment using github codespace -  **right click and open link in new tab**
 
    <a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=YorHaaa/ClassiCode" target="_blank" rel="noopener noreferrer">
      <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces">
    </a>
+
+   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602221502162.png)
 
 2. Choose a **4 cores 16GB machine** and create a codespace cloud server for you own.
 
@@ -33,13 +35,9 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175429829.png)
 
-5. After clicking the `clone repository` button, you might be asked to log in to your GitHub account
+5. Click the `clone repository` button, copy this link into the input box, and then click `Clone from URL`
 
-   ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602180606845.png)
-
-6. After logging in, you need to click the `clone repository` again, copy this link into the input box
-
-    https://github.com/YorHaaa/Userstudy-repo.git
+   https://github.com/YorHaaa/Userstudy-repo.git
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602180907348.png)
 
@@ -47,7 +45,7 @@ This VSCode extension helps developers **understand and organize code comments**
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602181056185.png)
 
-7. Open the cloned repository
+6. Open the cloned repository
 
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602181146827.png)
 
