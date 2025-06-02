@@ -132,7 +132,7 @@ You may find that multiple tags or information types can be applied to a paragra
 
 
 
-If you want to learn more about how we perform comments classification, you can refer to this paper.
+If you want to know more about the details of classification types, you can refer to this paper.
 
 ````latex
 @article{rani2021,
