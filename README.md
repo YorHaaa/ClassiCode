@@ -23,7 +23,7 @@ This VSCode extension helps developers **understand and organize code comments**
    ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/20250602175130606.png)
 
    > If you see an alert like this, click `continue`
-   > ![image-20250602211739345](C:\Users\一矢光明\AppData\Roaming\Typora\typora-user-images\image-20250602211739345.png)
+   > ![](https://raw.githubusercontent.com/YorHaaa/BolgDemo/master/image-20250602211739345.png)
 
 4. Then you will see a new editor pop up in vscode, which is used to select the project to which this plugin should be applied. 
 
