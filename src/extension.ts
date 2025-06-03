@@ -130,9 +130,13 @@ highlightButton.show();
     context.subscriptions.push(
         vscode.commands.registerCommand('commentClassifier.showFilterOptions', async () => {
             const filterOptions = ['All','summary', 'ownership', 'expand', 'usage','pointer','deprecation'
-                ,'rational','parameters','development notes','key implementation points','example','responsibilities',
-                'class references','intent','key messages','collaborators'
-            ];//17个
+                ,'rational'];//7 java types
+
+            // const filterOptions = ['All','summary', 'ownership', 'expand', 'usage','pointer','deprecation'
+            //     ,'rational','parameters','development notes','key implementation points','example','responsibilities',
+            //     'class references','intent','key messages','collaborators'
+            // ];//
+
             const selectedFilter = await vscode.window.showQuickPick(filterOptions, {
                 placeHolder: 'Select a filter',
             });
